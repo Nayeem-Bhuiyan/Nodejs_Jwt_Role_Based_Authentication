@@ -1,0 +1,14 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
+
+//const jwtSecretKey = process.env.JWT_SECRET_KEY;
+const jwtSecretKey ='d321sd-t345v-56fgh-5675hgfuy56-34534-g456-hbygu76-324534fdger6-345tr';
+const googleApiKey = process.env.GOOGLE_API_KEY;
+const serverPort = process.env.PORT || 5000;
+
+module.exports = {
+   jwtSecretKey,
+   googleApiKey,
+   serverPort
+}
