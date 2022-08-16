@@ -19,6 +19,8 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { AuthGuard } from './auth-helper/guard/auth.guard';
 import { AuthService } from './services/auth/auth.service';
+import { FogotPasswordComponent } from './components/fogot-password/fogot-password.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,8 @@ import { AuthService } from './services/auth/auth.service';
     ForbiddenComponent,
     NavBarComponent,
     FooterComponent,
+    FogotPasswordComponent,
+    FileUploadComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const crypto= require("crypto-js");
 const pool = require('../database-setup/database')
 const config = require('../helper/config')
-
+const nodemailer =require('nodemailer'); 
 const controller = {}
 
 controller.signUp = async (req, res) => {
@@ -79,6 +80,47 @@ controller.signIn = async (req, res) => {
   }
 }
 
+controller.forgotPassword=async (req, res) => {
+
+    const { email } = req.body
+    console.log("Request Email  :"+email);
+      const userFromDb = await pool.query('SELECT * FROM users WHERE email = ?', [email])
+      
+    const newPassword = "123456";
+
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false,
+        auth: {
+          user: 'idb40nayeem@gmail.com',
+          pass: 'zyoquucfexnyskdb'
+        }
+    })
+
+    const data = {
+     to: email,
+     from: 'idb40nayeem@gmail.com',
+     subject: 'Forgot Password Verification Password',
+     html: `<p>this is your new password to login :${newPassword}</p>`
+    }
+
+    transporter.sendMail(data, async () => {
+
+     const salt = await bcrypt.genSalt(10)
+     const updatePassword = await bcrypt.hash(newPassword, salt)
+     userFromDb[0].password=updatePassword;
+      const{id}=userFromDb[0];
+   
+   
+      if(userFromDb[0]){
+        await pool.query('UPDATE users set ? WHERE id = ?', [userFromDb[0],id]);
+      }
+      
+      res.status(200).json({ message: 'Forgot Password emailed successfully!!'})
+    
+    })
+}
 
 
 module.exports = controller

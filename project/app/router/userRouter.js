@@ -1,8 +1,11 @@
 const router = require('express').Router()
-const controller = require('../controller/userController')
+const _usercontroller = require('../controller/userController')
 const midd = require('../middleware/projectMiddleware')
+let uploadInFolder = require('../config/multer.config');
 
-router.get('/all', [midd.jwt.tokenRequired, midd.jwt.tokenAdmin], controller.all)
-router.post('/edit/:id', [midd.jwt.tokenRequired, midd.jwt.sameUser], controller.edit)
+router.get('/all', [midd.jwt.tokenRequired, midd.jwt.tokenAdmin], _usercontroller.all)
+router.post('/edit/:id', [midd.jwt.tokenRequired, midd.jwt.sameUser], _usercontroller.edit)
+router.post('/upload-images',uploadInFolder.array('files', 12),_usercontroller.uploadFile);
+router.get('/image-paths',_usercontroller.getAllFilesPath );
 
 module.exports = router

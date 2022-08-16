@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   forgotPassword(email : string ){
-    return this.http.post(AUTH_API+'forgotPassword' , {email : email} , httpOptions );
+    return this.http.post(AUTH_API+'forgot-password' , {email : email} , httpOptions );
   }
 
   resetPassword( newPassword : string , confirmedPassword : string , token : string){

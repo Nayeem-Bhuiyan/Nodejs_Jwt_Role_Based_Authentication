@@ -1,4 +1,34 @@
 const pool = require('../database-setup/database')
+const fileService=require('../service/fileService')
+
+
+
+
+    const uploadFile = async (req, res) => {
+
+
+      const reqFiles = [];
+      //const url = req.protocol + '://' + req.get('host')
+      for (var i = 0; i < req.files.length; i++) {
+          //reqFiles.push(url + '/public/' + req.files[i].filename)
+          reqFiles.push('/uploads/' + req.files[i].filename)
+      }
+      res.status(200).json("file upload successfully done!!");
+    }
+
+
+    const getAllFilesPath = async (req, res) => {
+      const filesPath=[];
+      fileService.getFilesPath((filepath, name, ext, stat) => {
+/*         console.log('file path:', filepath);
+        console.log('file name:', name);
+        console.log('file extension:', ext);
+        console.log('file information:', stat); */
+        filesPath.push(filepath);
+      });
+      res.send(filesPath);
+    }
+
 
 const all = async (req, res) => {
   let roles
@@ -38,4 +68,4 @@ const edit = async (req, res) => {
   }
 }
 
-module.exports = { all, edit }
+module.exports = { all, edit,uploadFile,getAllFilesPath }
