@@ -17,7 +17,6 @@ app.use(cookieParser())
 app.use(express.json({ limit: '5000mb' }));
 app.use(express.static(path.join(__dirname+'/uploads')));
 app.use(express.urlencoded())
-
 app.use('/auth', require('./app/router/authrouter'))
 app.use('/users', require('./app/router/userRouter'))
 

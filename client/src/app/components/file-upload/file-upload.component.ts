@@ -29,8 +29,8 @@ export class FileUploadComponent implements OnInit {
     //this.imageInfos = this._fileService.getFiles().subscribe({
      this._fileService.getFiles().subscribe({
       next: (data) => {
-      
-       console.log(data[1]);
+      alert(data[0]);
+       
       },
       error: (error: HttpErrorResponse) => console.error(error),
       complete: () => console.info('complete'),

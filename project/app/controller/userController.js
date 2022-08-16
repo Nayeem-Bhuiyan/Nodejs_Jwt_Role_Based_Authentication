@@ -18,15 +18,27 @@ const fileService=require('../service/fileService')
 
 
     const getAllFilesPath = async (req, res) => {
-      const filesPath=[];
-      fileService.getFilesPath((filepath, name, ext, stat) => {
-/*         console.log('file path:', filepath);
-        console.log('file name:', name);
-        console.log('file extension:', ext);
-        console.log('file information:', stat); */
-        filesPath.push(filepath);
-      });
-      res.send(filesPath);
+      try{
+        let filesPath=[];
+        fileService.getFilesPath((filepath, name, ext, stat) => {
+          console.log('file path:', filepath);
+          console.log('file name:', name);
+          console.log('file extension:', ext);
+          console.log('file information:', stat);
+          filesPath.push(filepath);
+        });
+  
+   
+          filesPath.forEach(filePath=> {
+            console.log('Current File Path'+filePath);
+          });
+          res.status(200).send(filesPath);
+      }catch(e){
+        console.log(e);
+        res.status(404).json('Error :'+e.message);
+      }
+
+      
     }
 
 
