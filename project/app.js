@@ -32,9 +32,6 @@ app.use('/users',_userRouter)
 app.use(_errorHandlerMiddleWare);
 
 
-
-
-
 app.listen(app.get('port'), () =>
   console.log(`http://localhost:${app.get('port')}`)
 )
