@@ -5,15 +5,17 @@ const fileService=require('../service/fileService')
 
 
     const uploadFile = async (req, res) => {
-
-
-      const reqFiles = [];
-      //const url = req.protocol + '://' + req.get('host')
-      for (var i = 0; i < req.files.length; i++) {
+          try {
+          const reqFiles = [];
+          //const url = req.protocol + '://' + req.get('host')
+          for (var i = 0; i < req.files.length; i++) {
           //reqFiles.push(url + '/public/' + req.files[i].filename)
           reqFiles.push('/uploads/' + req.files[i].filename)
-      }
-      res.status(200).json("file upload successfully done!!");
+          }
+          res.status(200).json("file upload successfully done!!");
+          } catch (error) {
+            res.status(500).json("internal sever error: " + error.message);
+          }
     }
 
 
