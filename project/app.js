@@ -4,34 +4,36 @@ const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const path = require('path');
-const createError = require('http-errors');
 const app = express();
 
 //built custom module imports
 const _config = require('../project/app/helper/config');
 const _userRouter=require('./app/router/userRouter');
 const _authrouter=require('./app/router/authrouter');
-const _projectMiddleware=require('./app/middleware/projectMiddleware')
-const _errorHandlerMiddleWare=require('./app/middleware/ErrorHandlerMiddleWare')
+const { errorMiddleware, notFound }=require('./app/middleware/ErrorHandlerMiddleWare')
 
-app.set('port', _config.serverPort || 5000)
 
+
+// middleware list
 //app.use(cors({ credentials:true, origin: process.env.CORS_ORIGIN }))
 app.use(cors({ credentials:true, origin:'http://localhost:4200' }))
 app.use(logger('dev'));
 app.use(express.json({ limit: '5000mb' }));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname+'/uploads')));
 
-app.use(_projectMiddleware);
+
+//route middleware list
 
 app.use('/auth', _authrouter)
 app.use('/users',_userRouter)
 
-app.use(_errorHandlerMiddleWare);
+// error and not-found route middleware
+app.use(notFound);
+app.use(errorMiddleware);
 
-
+app.set('port', _config.serverPort || 5000)
 app.listen(app.get('port'), () =>
   console.log(`http://localhost:${app.get('port')}`)
 )
