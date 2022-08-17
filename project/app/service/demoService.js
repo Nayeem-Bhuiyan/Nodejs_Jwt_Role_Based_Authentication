@@ -25,7 +25,7 @@ const getAll = async () => {
     return response;
   };
   
-  const create = async (data) => {
+  const insert = async (data) => {
     const response = [];
     response=await pool.query('SELECT * FROM tblName');
     let sql = `SELECT * FROM tblName`;
@@ -51,7 +51,7 @@ const getAll = async () => {
     return response;
   };
   
-  const remove = async (id) => {
+  const remove = update = async (id) => {
     const response = [];
     response=await pool.query('SELECT * FROM tblName');
     let sql = `SELECT * FROM tblName`;
@@ -65,4 +65,4 @@ const getAll = async () => {
   };
   
   mysqlConnection.end();
-  module.exports = { getAll, getById, create, update, remove };
+  module.exports = { getAll, getById, insert, update, remove};
