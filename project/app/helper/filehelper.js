@@ -11,15 +11,6 @@ const storage = multer.diskStorage({
         cb(null,file.fieldname + "-" + Date.now() + "-" + file.originalname)
     }
 });
-var maxSize = 5*1000*1000*1000; //5gb
-var upload = multer({
-    storage: storage,
-    limits: { fileSize: maxSize },
-    fileFilter: (req, file, cb) => {
-        checkFileType(file, cb)
-    }
-});
-
 
 const checkFileType=(file, cb)=>{
     // Allowed ext
@@ -38,5 +29,14 @@ const checkFileType=(file, cb)=>{
     }
 }
 
+
+var maxSize = 5*1000*1000*1000; //5gb
+var upload = multer({
+    storage: storage,
+    limits: { fileSize: maxSize },
+    fileFilter: (req, file, cb) => {
+        checkFileType(file, cb)
+    }
+});
 
 module.exports = {upload}
