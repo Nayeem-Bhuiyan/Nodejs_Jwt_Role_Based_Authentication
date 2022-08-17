@@ -51,7 +51,7 @@ controller.signIn = async (req, res) => {
   const { email,password} = req.body
 
   try {
-    const user = await pool.query('SELECT * FROM users WHERE email = ?', [email])
+    const user = await sqlConnection.query('SELECT * FROM users WHERE email = ?', [email])
 
     if (!user.length) {
       return res.status(400).json({ error: 'email not registered' })
@@ -84,7 +84,7 @@ controller.forgotPassword=async (req, res) => {
 
     const { email } = req.body
     console.log("Request Email  :"+email);
-      const userFromDb = await pool.query('SELECT * FROM users WHERE email = ?', [email])
+      const userFromDb = await sqlConnection.query('SELECT * FROM users WHERE email = ?', [email])
       
     const newPassword = "123456";
 
@@ -114,7 +114,7 @@ controller.forgotPassword=async (req, res) => {
    
    
       if(userFromDb[0]){
-        await pool.query('UPDATE users set ? WHERE id = ?', [userFromDb[0],id]);
+        await sqlConnection.query('UPDATE users set ? WHERE id = ?', [userFromDb[0],id]);
       }
       
       res.status(200).json({ message: 'Forgot Password emailed successfully!!'})

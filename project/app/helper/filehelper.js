@@ -1,3 +1,4 @@
+'use strict';
 const multer = require('multer');
 const path = require('path');
 
@@ -11,7 +12,7 @@ const storage = multer.diskStorage({
     }
 });
 var maxSize = 5*1000*1000*1000; //5gb
-var uploadInFolder = multer({
+var upload = multer({
     storage: storage,
     limits: { fileSize: maxSize },
     fileFilter: (req, file, cb) => {
@@ -22,7 +23,7 @@ var uploadInFolder = multer({
 
 const checkFileType=(file, cb)=>{
     // Allowed ext
-    const filetypes = /jpeg|jpg|png|tif/;
+    const filetypes = /jpeg|jpg|png|tif|psd/;
 
     //check ext
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
@@ -38,12 +39,4 @@ const checkFileType=(file, cb)=>{
 }
 
 
-  
-
-  
-
-  
-
-
-
-module.exports = {uploadInFolder};
+module.exports = {upload}
