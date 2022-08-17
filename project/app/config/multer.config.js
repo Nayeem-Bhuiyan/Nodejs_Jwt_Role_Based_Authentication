@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
         cb(null,file.fieldname + "-" + Date.now() + "-" + file.originalname)
     }
 });
-var maxSize = 5*1000*1000*1000;
+var maxSize = 5*1000*1000*1000; //5gb
 var uploadInFolder = multer({
     storage: storage,
     limits: { fileSize: maxSize },
