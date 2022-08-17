@@ -48,7 +48,7 @@ const all = async (req, res) => {
   try {
     roles = await pool.query('SELECT * FROM roles')
   } catch (error) {
-    res.status(400).json(error)
+    res.status(500).json(error)
   }
 
   try {
@@ -63,7 +63,7 @@ const all = async (req, res) => {
 
     return res.status(200).json({ users })
   } catch (error) {
-    res.status(400).json(error)
+    res.status(500).json(error)
   }
 }
 
@@ -76,7 +76,7 @@ const edit = async (req, res) => {
 
     res.status(200).json({ message: 'user edit successfully' })
   } catch (error) {
-    res.status(400).json(error)
+    res.status(500).json(error)
   }
 }
 
