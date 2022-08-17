@@ -2,12 +2,7 @@ const fs = require('fs');
 var path = require('path');
 const projectRootDirectory=path.dirname(require.main.filename)   
 
-
-
-
-
-
-function getFilesPath(processFile) {
+const getFilesPath = async (processFile) => {
   // read directory
   fs.readdir(projectRootDirectory+'/app/uploads', (error, fileNames) => {
     if (error) throw error;
@@ -35,6 +30,7 @@ function getFilesPath(processFile) {
       });
     });
   });
-}
+};
+
 
 module.exports = {getFilesPath}
