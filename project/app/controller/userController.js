@@ -35,7 +35,7 @@ const fileService=require('../service/fileService')
           res.status(200).send(filesPath);
       }catch(e){
         console.log(e);
-        res.status(404).json('Error :'+e.message);
+        res.status(500).json('Error :'+e.message);
       }
 
       
