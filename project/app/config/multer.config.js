@@ -3,7 +3,6 @@ const path = require('path');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        console.log("FileDirectory :"+'./app/uploads')
         cb(null,'./app/uploads');
     },
     filename: (req, file, cb) => {
@@ -37,6 +36,14 @@ const checkFileType=(file, cb)=>{
         cb('Error')
     }
 }
+
+
+  
+
+  
+
+  
+
 
 
 module.exports = {uploadInFolder};

@@ -13,7 +13,6 @@ const _authrouter=require('./app/router/authrouter');
 const { errorMiddleware, notFound }=require('./app/middleware/ErrorHandlerMiddleWare')
 
 
-
 // middleware list
 //app.use(cors({ credentials:true, origin: process.env.CORS_ORIGIN }))
 app.use(cors({ credentials:true, origin:'http://localhost:4200' }))
@@ -25,7 +24,6 @@ app.use(express.static(path.join(__dirname+'/uploads')));
 
 
 //route middleware list
-
 app.use('/auth', _authrouter)
 app.use('/users',_userRouter)
 
