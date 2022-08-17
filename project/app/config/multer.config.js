@@ -39,4 +39,4 @@ const checkFileType=(file, cb)=>{
 }
 
 
-module.exports = uploadInFolder;
+module.exports = {uploadInFolder};
