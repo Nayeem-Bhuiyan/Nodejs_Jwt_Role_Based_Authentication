@@ -29,7 +29,7 @@ export class FileUploadComponent implements OnInit {
     //this.imageInfos = this._fileService.getFiles().subscribe({
      this._fileService.getFiles().subscribe({
       next: (data) => {
-      alert(data[0]);
+      console.log(data[0]);
        
       },
       error: (error: HttpErrorResponse) => console.error(error),
