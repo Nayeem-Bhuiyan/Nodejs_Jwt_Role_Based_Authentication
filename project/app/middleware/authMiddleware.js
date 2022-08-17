@@ -1,10 +1,10 @@
-const dbConnection = require('../database-setup/database')
+const sqlConnection = require('../database-setup/database')
 
 const existEmail = async (req, res, next) => {
   const { email } = req.body
 
   try {
-    const user = await dbConnection.query('SELECT * FROM users WHERE email = ?', [
+    const user = await sqlConnection.query('SELECT * FROM users WHERE email = ?', [
       email
     ])
 
@@ -26,7 +26,7 @@ const existRole = async (req, res, next) => {
   }
 
   try {
-    const roles = await dbConnection.query('SELECT * FROM roles')
+    const roles = await sqlConnection.query('SELECT * FROM roles')
     const exist = roles.filter(({ role }) => role === queryRole).length
 
     if (exist) {

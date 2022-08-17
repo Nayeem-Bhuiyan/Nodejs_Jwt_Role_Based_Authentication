@@ -1,8 +1,5 @@
-const pool = require('../database-setup/database')
+const sqlConnection = require('../database-setup/database')
 const fileService=require('../service/fileService')
-
-
-
 
     const uploadFile = async (req, res) => {
           try {
@@ -48,13 +45,13 @@ const all = async (req, res) => {
   let roles
 
   try {
-    roles = await pool.query('SELECT * FROM roles')
+    roles = await sqlConnection.query('SELECT * FROM roles')
   } catch (error) {
     res.status(500).json(error)
   }
 
   try {
-    const users = await pool.query(
+    const users = await sqlConnection.query(
       'SELECT id, id_role, name, lastname, email, country, phone, created_at, updated_at FROM users'
     )
 
@@ -74,7 +71,7 @@ const edit = async (req, res) => {
   const { id } = req.params
 
   try {
-    await pool.query('UPDATE users SET ? WHERE id =?', [user, id])
+    await sqlConnection.query('UPDATE users SET ? WHERE id =?', [user, id])
 
     res.status(200).json({ message: 'user edit successfully' })
   } catch (error) {

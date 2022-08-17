@@ -1,4 +1,4 @@
-//built npm module imports
+//built in npm module imports
 const express = require('express')
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser')

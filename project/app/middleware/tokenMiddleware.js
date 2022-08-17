@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const pool = require('../database-setup/database')
+const sqlConnection = require('../database-setup/database')
 const { isAdmin } = require('../helper/helpService')
 
 const tokenRequired = async (req, res, next) => {
@@ -13,7 +13,7 @@ const tokenRequired = async (req, res, next) => {
     const { id } = jwt.verify(token, process.env.JWT_KEY)
     req.id_user = id
 
-    const exist = await pool.query('SELECT * FROM users WHERE id = ?', [id])
+    const exist = await sqlConnection.query('SELECT * FROM users WHERE id = ?', [id])
 
     if (!exist.length) {
       return res.status(500).json({ error: 'token unassigned' })
@@ -24,8 +24,6 @@ const tokenRequired = async (req, res, next) => {
     return res.status(500).json({ error: 'token not valid' })
   }
 }
-
-
 
 const tokenAdmin = async (req, res, next) => {
   try {

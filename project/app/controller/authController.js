@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const crypto= require("crypto-js");
-const pool = require('../database-setup/database')
+const sqlConnection = require('../database-setup/database')
 const config = require('../helper/config')
 const nodemailer =require('nodemailer'); 
 const controller = {}
@@ -25,15 +25,15 @@ controller.signUp = async (req, res) => {
   }
 
   if (role) {
-    const rol = await pool.query('SELECT * FROM roles WHERE role = ?', [role])
+    const rol = await sqlConnection.query('SELECT * FROM roles WHERE role = ?', [role])
     user.id_role = rol[0].id
   } else {
-    const rol = await pool.query('SELECT * FROM roles WHERE role = ?', ['user'])
+    const rol = await sqlConnection.query('SELECT * FROM roles WHERE role = ?', ['user'])
     user.id_role = rol[0].id
   }
 
   try {
-    await pool.query('INSERT INTO users set ?', [user])
+    await sqlConnection.query('INSERT INTO users set ?', [user])
 
     res.status(200).json({ message: 'user added successfully' })
   } catch (error) {

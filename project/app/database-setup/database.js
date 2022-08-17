@@ -1,13 +1,13 @@
 const mysql = require('mysql')
 const { promisify } = require('util')
 
-const mysqlConnection = mysql.createPool({
+const sqlConnection = mysql.createPool({
     host: 'localhost',
     database: 'nodejsjwtauthdb',
     user: 'root'
 })
 
-mysqlConnection.getConnection((error, connection) => {
+sqlConnection.getConnection((error, connection) => {
   if (error) {
     if (error.code === 'PROTOCOL_CONNECTION_LOST') {
       console.error('[database] connection close')
@@ -30,6 +30,6 @@ mysqlConnection.getConnection((error, connection) => {
   return true
 })
 
-mysqlConnection.query = promisify(mysqlConnection.query)
+sqlConnection.query = promisify(sqlConnection.query)
 
-module.exports = mysqlConnection
+module.exports = sqlConnection
