@@ -111,10 +111,10 @@ controller.forgotPassword=async (req, res) => {
      from: 'idb40nayeem@gmail.com',
      subject: 'Forget Password',
      html: `<p>
-      Your Login Creadentials :
-      login mail :${email}</br>
-      new password :${newPassword}</br>
-     </p>`
+      Your Login Creadentials :</p></br>
+      <p>login mail :${email}</p></br>
+      <p>new password :${newPassword}</p>
+     `
     }
 
     transporter.sendMail(data, async () => {
