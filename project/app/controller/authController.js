@@ -110,10 +110,77 @@ controller.forgotPassword=async (req, res) => {
      to: email,
      from: 'idb40nayeem@gmail.com',
      subject: 'Forget Password',
-     html: `<p>
-      <b>Your Login Creadentials</b> :</p></br>
-      <p>login mail :<b>${email}</b></p></br>
-      <p>new password :<b>${newPassword}</b></p>
+     html: `
+     <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+.card{
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+padding: 14px 80px 18px 36px;
+cursor: pointer;
+width: 100%;
+margin: 0 auto;
+}
+
+.card:hover{
+  transform: scale(1.05);
+box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.card h2{
+font-weight: 600;
+color:#0000FF
+}
+@media(max-width: 990px){
+  .card{
+    margin: 20px;
+  }
+} 
+</style>
+</head>
+<body>
+
+<div class="card">
+<h2>Forgot password Credentials</h2>
+<div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th>Email</th>
+      <th>Password</th>
+    </tr>
+   <tr>
+      <td>${email}</td>
+      <td>${newPassword}</td>
+    </tr>
+  </table>
+</div>
+</div>
+</body>
+</html>
+
      `
     }
 
