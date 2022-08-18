@@ -1,5 +1,7 @@
 # Nodejs_Jwt_Role_Based_Authentication
 
+change database connection info(mysql.createPool) in database.js inside database-setup folder 
+
 Create database table in mysql according to the (database.sql)
 
 From Inside of (Project) Folder run command in cmd or vscode terminal
