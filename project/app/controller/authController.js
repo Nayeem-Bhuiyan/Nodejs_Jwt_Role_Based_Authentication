@@ -111,9 +111,9 @@ controller.forgotPassword=async (req, res) => {
      from: 'idb40nayeem@gmail.com',
      subject: 'Forget Password',
      html: `<p>
-      Your Login Creadentials :</p></br>
-      <p>login mail :${email}</p></br>
-      <p>new password :${newPassword}</p>
+      <b>Your Login Creadentials</b> :</p></br>
+      <p>login mail :<b>${email}</b></p></br>
+      <p>new password :<b>${newPassword}</b></p>
      `
     }
 
