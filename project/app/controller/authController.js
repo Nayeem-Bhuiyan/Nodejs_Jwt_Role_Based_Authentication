@@ -4,7 +4,7 @@ const crypto= require("crypto-js");
 const sqlConnection = require('../database-setup/database')
 const config = require('../helper/config')
 const nodemailer =require('nodemailer'); 
-var generatePassword = require("generate-password")
+const generatePassword = require("generate-password")
 const controller = {}
 
 controller.signUp = async (req, res) => {
@@ -109,7 +109,7 @@ controller.forgotPassword=async (req, res) => {
     const data = {
      to: email,
      from: 'idb40nayeem@gmail.com',
-     subject: 'Forgot Password Verification Password',
+     subject: 'Forget Password',
      html: `<p>this is your new password to login :${newPassword}</p>`
     }
 
